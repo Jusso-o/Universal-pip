@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Universal PiP",
+  "version": "0.1.0",
+  "description": "Coloca qualquer vídeo em Picture-in-Picture, inclusive em sites de streaming.",
+  "permissions": ["activeTab", "scripting"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_title": "Abrir Picture-in-Picture" },
+  "commands": {
+    "toggle-pip": {
+      "suggested_key": { "default": "Alt+P" },
+      "description": "Alternar Picture-in-Picture"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "all_frames": true,
+      "match_about_blank": true,
+      "run_at": "document_idle"
+    }
+  ]
+}
